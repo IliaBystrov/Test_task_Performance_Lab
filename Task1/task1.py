@@ -1,20 +1,25 @@
-n = int(input())
-m = int(input())
-a = []
+import sys
 
-for i in range(n):
-    a.append(i+1)
+if len(sys.argv) == 3:
+    n = int(sys.argv[1])
+    m = int(sys.argv[2])
+    a = []
 
-last = 0
-j = 0
+    for i in range(n):
+        a.append(i+1)
 
-while a[0] != last:
-    f = 1
-    print(a[j], end=" ")
-    while f < m:
-        if j == len(a)-1:
-            j=0
-        else:
-            j+=1
-        f+=1
-    last = a[j]
+    last = 0
+    j = 0
+
+    while a[0] != last:
+        f = 1
+        print(a[j], end="")
+        while f < m:
+            if j == len(a)-1:
+                j=0
+            else:
+                j+=1
+            f+=1
+        last = a[j]
+else:
+    print("Нужно указать 2 параметра!")
