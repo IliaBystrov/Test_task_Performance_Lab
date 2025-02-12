@@ -1,4 +1,5 @@
 import json
+import sys
 
 def set_res(item):
     for i in item:
@@ -15,18 +16,20 @@ def set_res(item):
             set_res(i['values'])
 
 
-#Входные данные
-tests_path = 'tests.json'
-values_path = 'values.json'
-report_path = 'report.json'
+if len(sys.argv) == 4:
+    values_path = sys.argv[1]
+    tests_path = sys.argv[2]
+    report_path = sys.argv[3]
 
-with open(tests_path) as tests_file:
-    tests=json.load(tests_file)
+    with open(tests_path) as tests_file:
+        tests=json.load(tests_file)
 
-with open(values_path) as values_file:
-    values=json.load(values_file)
+    with open(values_path) as values_file:
+        values=json.load(values_file)
 
-set_res(tests['tests'])
+    set_res(tests['tests'])
 
-with open('report.json', 'w') as report:
-    json.dump(tests, report)
+    with open(report_path, 'w') as report:
+        json.dump(tests, report)
+else:
+    print('Не указаны пути к файлам!')

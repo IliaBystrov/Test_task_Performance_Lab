@@ -1,20 +1,24 @@
-file_path = input("Укажите путь к файлу: ")
+import sys
 
-with open(file_path, 'r') as f:
-    nums = []
-    for line in f:
-        nums.append(int(line))
+if len(sys.argv) == 2:
+    file_path = sys.argv[1]
 
-avg = sum(nums)//len(nums)
-count=0
+    with open(file_path, 'r') as f:
+        nums = []
+        for line in f:
+            nums.append(int(line))
 
-for i in range (len(nums)):
-    while nums[i]!=avg:
-        if nums[i]<avg:
-            nums[i]+=1
-            count+=1
-        else:
-            nums[i]-=1
-            count+=1
+    avg = sorted(nums)[len(nums) // 2]
+    count=0
+    for i in range (len(nums)):
+        while nums[i]!=avg:
+            if nums[i]<avg:
+                nums[i]+=1
+                count+=1
+            else:
+                nums[i]-=1
+                count+=1
 
-print(count)
+    print(count)
+else:
+    print("Не указан путь к файлу!")
